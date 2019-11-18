@@ -19,7 +19,6 @@ package ru.tinkoff.decoro;
 import android.os.Parcel;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -231,7 +230,6 @@ public class MaskImpl implements Mask {
         if (slots.isEmpty() || !slots.checkIsIndex(position) || input == null || input.length() == 0) {
             return position;
         }
-        Log.wtf("kikong",input.toString());
         showHardcodedTail = true;
 
         int cursorPosition = position;
