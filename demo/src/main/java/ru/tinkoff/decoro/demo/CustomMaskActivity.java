@@ -55,7 +55,6 @@ public class CustomMaskActivity extends AppCompatActivity {
                 maskDescriptor.setHideHardcodedHead(false);
                 maskDescriptor.insertFront(dataEdit.getText().toString());
             }
-
             formatWatcher.setMask(maskDescriptor);
         }
     };

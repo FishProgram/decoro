@@ -19,6 +19,7 @@ package ru.tinkoff.decoro;
 import android.os.Parcel;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -49,6 +50,9 @@ public class MaskImpl implements Mask {
     private boolean forbidInputWhenFilled;
     private boolean hideHardcodedHead;
 
+    private TransformationIfFilled transformIfFilled;
+
+
     // Inner use only
     private boolean showHardcodedTail = true;
     private SlotsList slots;
@@ -77,6 +81,7 @@ public class MaskImpl implements Mask {
         this.hideHardcodedHead = mask.hideHardcodedHead;
         this.showHardcodedTail = mask.showHardcodedTail;
         this.slots = new SlotsList(mask.slots);
+        this.transformIfFilled = mask.transformIfFilled;
     }
 
     @NonNull
@@ -226,7 +231,7 @@ public class MaskImpl implements Mask {
         if (slots.isEmpty() || !slots.checkIsIndex(position) || input == null || input.length() == 0) {
             return position;
         }
-
+        Log.wtf("kikong",input.toString());
         showHardcodedTail = true;
 
         int cursorPosition = position;
@@ -282,7 +287,9 @@ public class MaskImpl implements Mask {
         // allow hardcoded tail be visible only if we've inserted at the end of the input
         final Slot nextSlot = slots.getSlot(cursorPosition);
         showHardcodedTail = nextSlot == null || !nextSlot.anyInputToTheRight();
-
+        if (transformIfFilled!=null && filled()){
+            transformIfFilled.transformation(slots);
+        }
         return cursorPosition;
     }
 
@@ -410,6 +417,15 @@ public class MaskImpl implements Mask {
     @Override
     public void setForbidInputWhenFilled(boolean forbidInputWhenFilled) {
         this.forbidInputWhenFilled = forbidInputWhenFilled;
+    }
+    @Override
+    public TransformationIfFilled getTransformIfFilled() {
+        return transformIfFilled;
+    }
+
+    @Override
+    public void setTransformIfFilled(TransformationIfFilled transformIfFilled) {
+        this.transformIfFilled = transformIfFilled;
     }
 
     @Override

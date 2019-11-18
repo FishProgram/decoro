@@ -211,4 +211,12 @@ public interface Mask extends Iterable<Slot>, Parcelable {
      * @throws IndexOutOfBoundsException if cursorPosition < 0 or cursorPosition > size
      */
     int findCursorPositionInUnformattedString(int cursorPosition);
+
+    TransformationIfFilled getTransformIfFilled() ;
+
+    void setTransformIfFilled(TransformationIfFilled transformIfFilled);
+
+    interface TransformationIfFilled{
+        void transformation(SlotsList slots);
+    }
 }

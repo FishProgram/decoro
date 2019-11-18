@@ -148,6 +148,14 @@ class UnmodifiableMask implements Mask {
     }
 
     @Override
+    public TransformationIfFilled getTransformIfFilled() {
+        return null;
+    }
+
+    @Override
+    public void setTransformIfFilled(TransformationIfFilled transformIfFilled) { }
+
+    @Override
     public int findCursorPositionInUnformattedString(int cursorPosition) {
         return delegate == null ? cursorPosition : delegate.findCursorPositionInUnformattedString(cursorPosition);
     }

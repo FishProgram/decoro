@@ -28,7 +28,7 @@ import ru.tinkoff.decoro.slots.Slot;
 /**
  * @author Mikhail Artemev
  */
-class SlotsList implements Iterable<Slot>, Parcelable {
+public class SlotsList implements Iterable<Slot>, Parcelable {
 
     private int size = 0;
 

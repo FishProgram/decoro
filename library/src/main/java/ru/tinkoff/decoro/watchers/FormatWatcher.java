@@ -134,7 +134,6 @@ public abstract class FormatWatcher implements TextWatcher, MaskFactory {
 
     public void refreshMask(@Nullable final CharSequence initialValue) {
         final boolean initial = this.mask == null;
-
         this.mask = createMask();
         checkMask();
 
